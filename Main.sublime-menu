@@ -1,0 +1,19 @@
+[
+{
+	"id": "tools",
+	"children":
+	[
+	    {
+			"caption":"Nginx Control",
+			"children":
+			[
+                 { "caption": "Start", "command": "nginx_start" }
+                ,{ "caption": "Reload", "command": "nginx_reload" }
+                ,{ "caption": "Stop", "command": "nginx_stop" }
+                ,{ "caption": "-" }
+                ,{ "caption": "Edit Conf File...", "command": "nginx_edit_conf" }
+			]
+	    }
+	]
+}
+]

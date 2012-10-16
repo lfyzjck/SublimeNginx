@@ -1,0 +1,5 @@
+{
+    //On windows, path sperator is '\\'
+    //On linux or max, path speratoris '/'
+    "nginx_path": "C:\\nginx\\nginx.exe"
+}
