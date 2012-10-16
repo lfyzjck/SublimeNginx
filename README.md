@@ -9,7 +9,7 @@ Installation
 1. Obviously you need nginx installed
 2. Clone this repo in your Sublime Text 2 Package dir.
 
-		git clone .....
+		git clone https://github.com/lfyzjck/SublimeNginx.git
 
 
 3. Edit Nginx.sublime-settings file in your packages dir, and change nginx_path to your's
