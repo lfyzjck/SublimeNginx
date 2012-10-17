@@ -3,7 +3,7 @@ import subprocess
 import os
 import sublime_plugin
 
-settings = sublime.load_settings('Nginx.sublime-settings')
+settings = sublime.load_settings('SublimeNginx.sublime-settings')
 
 
 def praseNginxPath():
@@ -33,7 +33,7 @@ class ShellCommand():
     def shell_out(self, cmd):
         return os.popen(cmd)
 
-    def show_errors(self, err, flag = 'status_message'):
+    def show_errors(self, err, flag='status_message'):
         if flag == 'status_message':
             sublime.status_message(err)
         else:
@@ -79,7 +79,8 @@ class NginxStartCommand(sublime_plugin.ApplicationCommand, NginxCommand):
 
     def run(self):
         stdout = self.start()
-        if stdout: self.show_errors(stdout)
+        if stdout:
+            self.show_errors(stdout)
 
     def is_enabled(self):
         self.updateStatus()
@@ -90,7 +91,8 @@ class NginxStopCommand(sublime_plugin.ApplicationCommand, NginxCommand):
 
     def run(self):
         stdout = self.stop()
-        if stdout: self.show_errors(stdout)
+        if stdout:
+            self.show_errors(stdout)
 
     def is_enabled(self):
         return nginx.get('status') == 'running'
@@ -100,7 +102,8 @@ class NginxReloadCommand(sublime_plugin.ApplicationCommand):
 
     def run(self):
         stdout = self.reload()
-        if stdout: self.show_errors(stdout)
+        if stdout:
+            self.show_errors(stdout)
 
     def is_enabled(self):
         return nginx.get('status') == 'running'
@@ -109,21 +112,23 @@ class NginxReloadCommand(sublime_plugin.ApplicationCommand):
 class NginxEditConfCommand(sublime_plugin.WindowCommand):
     confPath = os.path.join(nginx.get('path'), 'conf')
     panelItems = []
+
     def run(self):
         self.panelItems = []
         for i in self.walk_dir(self.confPath):
-            self.panelItems.append(i) 
+            self.panelItems.append(i)
         self.window.show_quick_panel(self.panelItems, self.open_file)
 
     def is_enabled(self):
         return os.path.exists(self.confPath)
 
     def open_file(self, f):
-        if f == -1: return
+        if f == -1:
+            return
         self.window.open_file(self.panelItems[f])
 
     def walk_dir(self, dirname):
-        for root,dirs,files in os.walk(dirname):
+        for root, dirs, files in os.walk(dirname):
             for f in files:
                 if f.endswith(".conf"):
-                    yield os.path.join(root, f) 
+                    yield os.path.join(root, f)
